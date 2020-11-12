@@ -36,7 +36,7 @@ public Test(int idEventoCaso, char sexo, int edad, boolean edadTipo,
 		String residenciaPais, String residenciaProvincia, String residenciaDepartamento, 
 		String cargaProvincia, String fechaInicioSintomas, String fechaApertura, 
 		String sepiApertura, String fechaInternacion, boolean cuidadoIntensivo, 
-		boolean fallecido, String fechaCuidadoIntensivo,String fechaFallecimiento, 
+		String fallecido, String fechaCuidadoIntensivo,String fechaFallecimiento, 
 		boolean asistenciaRespiratoriaMecanica, int cargaProvinciaId, 
 		boolean origenFinanciamiento,  String clasificacion, String clasificacionResumen, 
 		int residenciaProvinciaId, String fechaDiagnostico, int residenciaDepartamentoId, 
@@ -130,7 +130,7 @@ public Test(int idEventoCaso, char sexo, int edad, boolean edadTipo,
         return fechaCuidadoIntensivo;
     }
 
-    public boolean isFallecido() {
+    public String isFallecido() {
         return fallecido;
     }
 

@@ -6,7 +6,10 @@ import java.util.*;
 class Main {
   
 	public static void main (String[] args){
+		
 		List<Test> testeos = new ArrayList<>();
+		ArrayStack<Test> casos = new ArrayStack<>();
+		
 		try {
 			try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Valen\\Documents\\Info_III-Parcial_II\\Info_III-Parcial_II\\src\\iua\\info3\\parcial2\\Covid19Casos-10.csv"))) {
 				String line;
@@ -41,10 +44,9 @@ class Main {
 			e.printStackTrace();
 		}
 	}
+	
 
-		if (args.length == 0){
-			System.exit(0);
-		}
+		
 			
 		
 
@@ -87,10 +89,17 @@ class Main {
 			
 			int muestras =  0;
 			int infectados = 0;
+			int fallecidos = 0;
 			muestras++;
 
-			if (i.getClasificacionResumen().equals("Confirmado"))
+			if (i.getClasificacionResumen().equals("Confirmado")){
 				infectados++;
+				if (i.isFallecido().equals("Si")){
+					fallecidos++;
+
+
+				}
+			}
 
 			
 			
