@@ -11,7 +11,7 @@ class Main {
 		/*ArrayStack<Test> casos = new ArrayStack<>();*/
 		
 		try {
-			try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Valen\\Documents\\Info_III-Parcial_II\\Info_III-Parcial_II\\src\\iua\\info3\\parcial2\\Covid19Casos-10.csv"))) {
+			try (BufferedReader br = new BufferedReader(new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-10.csv"))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					
