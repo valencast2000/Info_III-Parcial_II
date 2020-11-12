@@ -9,6 +9,13 @@
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
             "mainClass": "Main",
+            "projectName": "Info_III-Parcial_II_7ba107ab"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Main",
             "projectName": "Info_III-Parcial_II_ddba8fe7"
         },
         {
