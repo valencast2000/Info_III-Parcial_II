@@ -4,7 +4,7 @@ public class Test{
 	private int idEventoCaso;
     private char sexo;
     private int edad;
-    private boolean edadTipo; // 1 -> meses //// 0 -> anios 
+    private String edadTipo; // 1 -> meses //// 0 -> anios 
     private String residenciaPais;
     private String residenciaProvincia;
     private String residenciaDepartamento;
@@ -31,7 +31,7 @@ public class Test{
 Test() {
 
 }
-public Test(int idEventoCaso, char sexo, int edad, boolean edadTipo, 
+public Test(int idEventoCaso, char sexo, int edad, String edadTipo, 
 		String residenciaPais, String residenciaProvincia, String residenciaDepartamento, 
 		String cargaProvincia, String fechaInicioSintomas, String fechaApertura, 
 		String sepiApertura, String fechaInternacion, boolean cuidadoIntensivo, 
@@ -85,7 +85,7 @@ public Test(int idEventoCaso, char sexo, int edad, boolean edadTipo,
         return edad;
     }
 
-    public boolean isEdadTipo() {
+    public String isEdadTipo() {
         return edadTipo;
     }
 
