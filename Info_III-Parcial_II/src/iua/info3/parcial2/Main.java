@@ -8,7 +8,7 @@ class Main {
 	public static void main (String[] args){
 		
 		List<Test> testeos = new ArrayList<>();
-		ArrayStack<Test> casos = new ArrayStack<>();
+		/*ArrayStack<Test> casos = new ArrayStack<>();*/
 		
 		try {
 			try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Valen\\Documents\\Info_III-Parcial_II\\Info_III-Parcial_II\\src\\iua\\info3\\parcial2\\Covid19Casos-10.csv"))) {
@@ -36,15 +36,17 @@ class Main {
 					//TODO: Hacer todos los sets
 						
 					testeos.add(t);
-				}
+					}
 
-			}
+				}
 			
-		} catch(Exception e){
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
+	} //fin metodo main
 
 		
 			
@@ -71,7 +73,6 @@ class Main {
 	}
 	*/
 
-	}//fin metodo main
 
 	public static void infoEstadistica (List<Test> testeos){
 			/*Información estadística:
@@ -85,7 +86,7 @@ class Main {
 		  */
 		
 		
-		for(Test i : testeos){
+		for(Test i : testeos) {
 			
 			int muestras =  0;
 			int infectados = 0;
