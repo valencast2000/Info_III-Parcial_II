@@ -1,4 +1,3 @@
-package iua.info3.parcial2;
 
 import java.io.*;
 import java.util.*;

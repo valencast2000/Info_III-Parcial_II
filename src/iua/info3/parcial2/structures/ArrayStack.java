@@ -1,4 +1,4 @@
-package iua.info3.parcial2.structures;
+package structures;
 
 public class ArrayStack {
     private char[] stack;

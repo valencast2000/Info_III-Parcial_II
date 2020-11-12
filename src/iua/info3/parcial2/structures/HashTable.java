@@ -1,4 +1,4 @@
-package iua.info3.parcial2.structures;
+package structures;
 
 import java.util.Arrays;
 

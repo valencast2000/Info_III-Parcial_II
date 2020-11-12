@@ -1,4 +1,4 @@
-package iua.info3.parcial2.structures;// AvlTree class
+package structures;
 //
 // CONSTRUCTION: with no initializer
 //

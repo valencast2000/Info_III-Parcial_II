@@ -1,4 +1,4 @@
-package iua.info3.parcial2.structures;
+package structures;
 // BinaryHeap class
 //
 // CONSTRUCTION: with optional capacity (that defaults to 100)

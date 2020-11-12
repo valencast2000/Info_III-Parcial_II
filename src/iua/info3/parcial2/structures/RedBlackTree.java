@@ -1,4 +1,4 @@
-package iua.info3.parcial2.structures;// RedBlackTree class
+package structures;// RedBlackTree class
 //
 // CONSTRUCTION: with no parameters
 //
