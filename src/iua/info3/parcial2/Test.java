@@ -1,10 +1,10 @@
 
-public class Test{
+public class Test {
 
-	private int idEventoCaso;
+    private int idEventoCaso;
     private char sexo;
     private int edad;
-    private String edadTipo; // 1 -> meses //// 0 -> anios 
+    private String edadTipo; // 1 -> meses //// 0 -> anios
     private String residenciaPais;
     private String residenciaProvincia;
     private String residenciaDepartamento;
@@ -13,65 +13,22 @@ public class Test{
     private String fechaApertura;
     private String sepiApertura;
     private String fechaInternacion;
-    private boolean cuidadoIntensivo; //Verdadero -> Estuvo en cuidado
+    private boolean cuidadoIntensivo; // Verdadero -> "SI"
     private String fechaCuidadoIntensivo;
-    private String fallecido; //Verdadero->Muerto //hatch en cs = verdadero 
+    private String fallecido;
     private String fechaFallecimiento;
-    private boolean asistenciaRespiratoriaMecanica; //Verdadero-> Tuvo asistencia
+    private boolean asistenciaRespiratoriaMecanica; // Verdadero-> "SI"
     private int cargaProvinciaId;
-    private boolean origenFinanciamiento; //Verdadero-> Tenia obra social
+    private boolean origenFinanciamiento; // Verdadero-> Privado, Falso-> Publico
     private String clasificacion;
     private String clasificacionResumen;
     private int residenciaProvinciaId;
     private String fechaDiagnostico;
     private int residenciaDepartamentoId;
-    private String ultimaActualizacion; //Fecha
-    
-//****************************** BUILDER *****************************************
-Test() {
+    private String ultimaActualizacion; // Fecha
 
-}
-public Test(int idEventoCaso, char sexo, int edad, String edadTipo, 
-		String residenciaPais, String residenciaProvincia, String residenciaDepartamento, 
-		String cargaProvincia, String fechaInicioSintomas, String fechaApertura, 
-		String sepiApertura, String fechaInternacion, boolean cuidadoIntensivo, 
-		String fallecido, String fechaCuidadoIntensivo,String fechaFallecimiento, 
-		boolean asistenciaRespiratoriaMecanica, int cargaProvinciaId, 
-		boolean origenFinanciamiento,  String clasificacion, String clasificacionResumen, 
-		int residenciaProvinciaId, String fechaDiagnostico, int residenciaDepartamentoId, 
-		String ultimaActualizacion) {
-       
-     this.idEventoCaso = idEventoCaso;
-     this.sexo = sexo;
-     this.edad = edad;
-     this.edadTipo = edadTipo;
-     this.residenciaPais = residenciaPais;
-     this.residenciaProvincia = residenciaProvincia;
-     this.residenciaDepartamento = residenciaDepartamento;
-     this.cargaProvincia = cargaProvincia;
-     this.fechaInicioSintomas = fechaInicioSintomas;
-     this.fechaApertura = fechaApertura;
-     this.sepiApertura = sepiApertura;
-     this.fechaInternacion = fechaInternacion;
-     this.cuidadoIntensivo = cuidadoIntensivo;
-	 this.fechaCuidadoIntensivo = fechaCuidadoIntensivo;
-     this.fallecido = fallecido;
-	 this.fechaFallecimiento = fechaFallecimiento;
-     this.asistenciaRespiratoriaMecanica = asistenciaRespiratoriaMecanica;
-     this.cargaProvinciaId = cargaProvinciaId;
-     this.origenFinanciamiento = origenFinanciamiento;
-     this.clasificacion = clasificacion;
-     this.clasificacionResumen = clasificacionResumen;
-     this.residenciaProvinciaId = residenciaProvinciaId;
-     this.fechaDiagnostico = fechaDiagnostico;
-     this.residenciaDepartamentoId = residenciaDepartamentoId;
-     this.ultimaActualizacion = ultimaActualizacion;
-
-	}
-//************************** FIN BUILDER ****************************************
-
-
-//************************** INICIO GETTERS **************************************
+    // ************************** INICIO GETTERS
+    // **************************************
 
     public int getIdEventoCaso() {
         return idEventoCaso;
@@ -172,5 +129,125 @@ public Test(int idEventoCaso, char sexo, int edad, String edadTipo,
     public String getUltimaActualizacion() {
         return ultimaActualizacion;
     }
-//**************************FIN GETTERS **************************************
+
+    public String getFallecido() {
+        return fallecido;
+    }
+
+    public String getEdadTipo() {
+        return edadTipo;
+    }
+
+    // **************************FIN GETTERS **************************************
+    public void setIdEventoCaso(String idEventoCaso) {
+        this.idEventoCaso = Integer.parseInt(idEventoCaso);
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo.charAt(0);
+    }
+
+    public void setEdad(String edad) {
+        this.edad = Integer.parseInt(edad);
+    }
+
+    public void setEdadTipo(String edadTipo) {
+        this.edadTipo = edadTipo;
+    }
+
+    public void setResidenciaPais(String residenciaPais) {
+        this.residenciaPais = residenciaPais;
+    }
+
+    public void setResidenciaProvincia(String residenciaProvincia) {
+        this.residenciaProvincia = residenciaProvincia;
+    }
+
+    public void setResidenciaDepartamento(String residenciaDepartamento) {
+        this.residenciaDepartamento = residenciaDepartamento;
+    }
+
+    public void setCargaProvincia(String cargaProvincia) {
+        this.cargaProvincia = cargaProvincia;
+    }
+
+    public void setFechaInicioSintomas(String fechaInicioSintomas) {
+        this.fechaInicioSintomas = fechaInicioSintomas;
+    }
+
+    public void setFechaApertura(String fechaApertura) {
+        this.fechaApertura = fechaApertura;
+    }
+
+    public void setSepiApertura(String sepiApertura) {
+        this.sepiApertura = sepiApertura;
+    }
+
+    public void setFechaInternacion(String fechaInternacion) {
+        this.fechaInternacion = fechaInternacion;
+    }
+
+    public void setCuidadoIntensivo(String cuidadoIntensivo) {
+        if (cuidadoIntensivo.equals("SI"))
+            this.cuidadoIntensivo = true;
+        else {
+            this.cuidadoIntensivo = false;
+        }
+    }
+
+    public void setFechaCuidadoIntensivo(String fechaCuidadoIntensivo) {
+        this.fechaCuidadoIntensivo = fechaCuidadoIntensivo;
+    }
+
+    public void setFallecido(String fallecido) {
+        this.fallecido = fallecido;
+    }
+
+    public void setFechaFallecimiento(String fechaFallecimiento) {
+        this.fechaFallecimiento = fechaFallecimiento;
+    }
+
+    public void setAsistenciaRespiratoriaMecanica(String asistenciaRespiratoriaMecanica) {
+        if (asistenciaRespiratoriaMecanica.equals("SI"))
+            this.asistenciaRespiratoriaMecanica = true;
+        else {
+            this.asistenciaRespiratoriaMecanica = false;
+        }
+    }
+
+    public void setCargaProvinciaId(String cargaProvinciaId) {
+        this.cargaProvinciaId = Integer.parseInt(cargaProvinciaId);
+    }
+
+    public void setOrigenFinanciamiento(String origenFinanciamiento) {
+        if (origenFinanciamiento.equals("Privado"))
+            this.asistenciaRespiratoriaMecanica = true;
+        else {
+            this.asistenciaRespiratoriaMecanica = false;
+        }
+    }
+
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
+    public void setClasificacionResumen(String clasificacionResumen) {
+        this.clasificacionResumen = clasificacionResumen;
+    }
+
+    public void setResidenciaProvinciaId(String residenciaProvinciaId) {
+        this.residenciaProvinciaId = Integer.parseInt(residenciaProvinciaId);
+    }
+
+    public void setFechaDiagnostico(String fechaDiagnostico) {
+        this.fechaDiagnostico = fechaDiagnostico;
+    }
+
+    public void setResidenciaDepartamentoId(String residenciaDepartamentoId) {
+        this.residenciaDepartamentoId = Integer.parseInt(residenciaDepartamentoId);
+    }
+
+    public void setUltimaActualizacion(String ultimaActualizacion) {
+        this.ultimaActualizacion = ultimaActualizacion;
+    }
 }
