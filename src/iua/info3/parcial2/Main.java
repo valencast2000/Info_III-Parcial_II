@@ -18,12 +18,9 @@ class Main {
 
 				for (int i = 0; i < values.length; i++) {
 
-					System.out.printf("vuelta: %d ", i);
-
 					if (values[i].length() > 1)
 						values[i] = values[i].substring(1, values[i].length() - 1);
 
-					System.out.println(values[i]);
 
 					/*
 					 * int idEventoCaso, char sexo, int edad, String edadTipo, String
@@ -116,7 +113,6 @@ class Main {
 			boolean infectado = false, fallecido = false;
 			int tmp = 0;
 
-			System.out.println("llego aca1");
 
 			muestras++;
 
@@ -131,8 +127,6 @@ class Main {
 			} else if (infectado) { // +4
 				infectadosRango[0]++;
 			}
-
-			System.out.println("llego aca2");
 
 			if (i.isFallecido().equals("Si") && infectado) {
 				fallecidos++;
