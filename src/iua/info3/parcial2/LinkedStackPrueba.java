@@ -1,11 +1,11 @@
-package structures;
+import structures.LinkedNodePrueba;
 
-public class LinkedStack<AnyType> {
-    private LinkedNode<AnyType> cima;
-    public int size;
+public class LinkedStackPrueba<AnyType> {
+    private LinkedNodePrueba<AnyType> cima;
+    private int size;
 
     public void push(AnyType d) {
-        cima = new LinkedNode<>(cima, d);
+        cima = new LinkedNodePrueba<>(cima, d);
         size++;
     }
 

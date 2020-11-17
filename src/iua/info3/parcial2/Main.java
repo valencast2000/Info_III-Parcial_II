@@ -2,7 +2,8 @@
 import java.io.*;
 import java.util.*;
 
-import structures.HashTablePrueba;
+import structures.ArrayStack;
+import structures.LinkedStack;
 
 class Main {
 
@@ -10,7 +11,8 @@ class Main {
 
 		List<Test> testeos = new ArrayList<>();
 
-		try (BufferedReader br = new BufferedReader(new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-10.csv"))) {
+		try (BufferedReader br = new BufferedReader(
+				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-1000.csv"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 
@@ -20,22 +22,11 @@ class Main {
 
 				for (int i = 0; i < values.length; i++) {
 
-					if (values[i].length() > 1)
+					if (values[i].length() > 1) {
 						values[i] = values[i].substring(1, values[i].length() - 1);
-
-					/*
-					 * int idEventoCaso, char sexo, int edad, String edadTipo, String
-					 * residenciaPais, String residenciaProvincia, String residenciaDepartamento,
-					 * String cargaProvincia, String fechaInicioSintomas, String fechaApertura,
-					 * String sepiApertura, String fechaInternacion, boolean cuidadoIntensivo,
-					 * String fallecido, String fechaCuidadoIntensivo,String fechaFallecimiento,
-					 * boolean asistenciaRespiratoriaMecanica, int cargaProvinciaId, boolean
-					 * origenFinanciamiento, String clasificacion, String clasificacionResumen, int
-					 * residenciaProvinciaId, String fechaDiagnostico, int residenciaDepartamentoId,
-					 * String ultimaActualizacion
-					 */
-
-					// TO DO: Hacer todos los sets
+					} else {
+						values[i] = "0";
+					}
 
 				}
 				t.setIdEventoCaso(values[0]);
@@ -117,24 +108,24 @@ class Main {
 
 			muestras++;
 
-			if (i.getClasificacionResumen().equals("Confirmado")) { // +2
+			if (i.getClasificacionResumen().equals("Confirmado")) {
 				infectados++;
 				infectado = true;
 			}
 
-			if (i.isEdadTipo().equals("Años") && infectado) { // +3
+			if (i.isEdadTipo().equals("Años") && infectado && i.getEdad() != 0) {
 				tmp = i.getEdad() / 10;
 				infectadosRango[tmp]++;
-			} else if (infectado) { // +4
+			} else if (infectado && i.getEdad() != 0) {
 				infectadosRango[0]++;
 			}
 
-			if (i.isFallecido().equals("Si") && infectado) {
+			if (i.isFallecido().equals("SI") && infectado) {
 				fallecidos++;
 				fallecido = true;
 			}
 
-			if (i.isEdadTipo().equals("Años") && fallecido) {
+			if (i.isEdadTipo().equals("Años") && fallecido && i.getEdad() != 0) {
 				tmp = i.getEdad() / 10;
 				fallecidosRango[tmp]++;
 			} else if (fallecido) {
@@ -167,19 +158,27 @@ class Main {
 	// menos. Si n no es pasado, se mostrarán todas las provincias.
 	public static void provContagio(List<Test> testeos) throws Exception {
 
-		HashTablePrueba<String> ht = new HashTablePrueba<>(500);
+		HashTablePrueba ht = new HashTablePrueba(100);
+		int[] idProv = new int[25];
+		Arrays.fill(idProv, -1);
 
 		for (Test i : testeos) {
+			ht.insert(i.getResidenciaProvinciaId(), i);
+			for (int j = 0; j < idProv.length; j++) {
+				if (idProv[j] == i.getResidenciaProvinciaId()) {
+					j += idProv.length;
+				} else if (idProv[j] == -1) {
+					idProv[j] = i.getResidenciaProvinciaId();
+				}
+			}
 
-			ht.insert(i.getResidenciaProvincia(), 1);
 		}
 
-		for (Test i : testeos) {
-
-			System.out.println(ht.get(i.getResidenciaProvincia()));
+		for (int i = 0; i < idProv.length; i++) {
+			System.out.print("1:");
+			ht.getPrint(idProv[i]);
 		}
 
-	} // fin provContagio
+	}// fin provContagio
 
-}
-// fin clase main
+}// fin clase main

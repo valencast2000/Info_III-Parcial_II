@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - AvlTree",
+            "request": "launch",
+            "mainClass": "structures.AvlTree",
+            "projectName": "Info_III-Parcial_II_7ba107ab"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - HashTable",
             "request": "launch",
             "mainClass": "structures.HashTable",

@@ -27,7 +27,6 @@ public class LinkedList<AnyType> {
         size++;
     }
 
-
     /**
      * Add data at the begining
      *
@@ -63,7 +62,7 @@ public class LinkedList<AnyType> {
     public void delete(int pos) throws Exception {
         if (pos == 0) {
             if (begin == null)
-                throw new Exception("pos not found");
+                throw new Exception("pos not found1");
             begin = begin.next;
         } else {
             LinkedNode<AnyType> aux = getNode(pos - 1);
@@ -74,7 +73,6 @@ public class LinkedList<AnyType> {
         }
         size--;
     }
-
 
     /**
      * @return
@@ -96,10 +94,8 @@ public class LinkedList<AnyType> {
         return aux;
     }
 
-
     public void moverSiguiente(AnyType d) {
         LinkedNode<AnyType> aux = begin;
-
 
         while (aux.next != null && !aux.next.data.equals(d)) {
             aux = aux.next;
@@ -110,7 +106,7 @@ public class LinkedList<AnyType> {
         LinkedNode<AnyType> sig = aux.next.next;
 
         ant.next = sig;
-        if(sig != null) {
+        if (sig != null) {
             dato.next = sig.next;
             sig.next = dato;
         }
