@@ -163,22 +163,24 @@ class Main {
 		Arrays.fill(idProv, -1);
 
 		for (Test i : testeos) {
-			ht.insert(i.getResidenciaProvinciaId(), i);
-			for (int j = 0; j < idProv.length; j++) {
-				if (idProv[j] == i.getResidenciaProvinciaId()) {
-					j += idProv.length;
-				} else if (idProv[j] == -1) {
-					idProv[j] = i.getResidenciaProvinciaId();
+			if(i.getClasificacionResumen().equals("Confirmado")) {
+				ht.insert(i.getResidenciaProvinciaId(), i);
+				for (int j = 0; j < idProv.length; j++) {
+					if (idProv[j] == i.getResidenciaProvinciaId()) {
+						j += idProv.length;
+					} else if (idProv[j] == -1) {
+						idProv[j] = i.getResidenciaProvinciaId();
+						break;
+					}
 				}
 			}
-
 		}
 
-		for (int i = 0; i < idProv.length; i++) {
+		for (int i = 0; idProv[i]!=-1; i++) {
 			System.out.print("1:");
 			ht.getPrint(idProv[i]);
 		}
-
+	
 	}// fin provContagio
 
 }// fin clase main

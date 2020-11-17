@@ -19,7 +19,7 @@ public class LinkedStack<AnyType> {
     public AnyType top() throws Exception {
         if (cima == null)
             throw new Exception("Stack Empty");
-        return cima.data;
+            return cima.data;
     }
 
     public AnyType topAndPop() throws Exception {
