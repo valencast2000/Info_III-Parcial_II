@@ -2,9 +2,11 @@
 import java.io.*;
 import java.util.*;
 
+import structures.HashTablePrueba;
+
 class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		List<Test> testeos = new ArrayList<>();
 
@@ -20,7 +22,6 @@ class Main {
 
 					if (values[i].length() > 1)
 						values[i] = values[i].substring(1, values[i].length() - 1);
-
 
 					/*
 					 * int idEventoCaso, char sexo, int edad, String edadTipo, String
@@ -70,7 +71,8 @@ class Main {
 			e.printStackTrace();
 		}
 
-		infoEstadistica(testeos);
+		// infoEstadistica(testeos);
+		provContagio(testeos);
 
 	} // fin metodo main
 
@@ -112,7 +114,6 @@ class Main {
 
 			boolean infectado = false, fallecido = false;
 			int tmp = 0;
-
 
 			muestras++;
 
@@ -164,9 +165,21 @@ class Main {
 
 	// Mostrará las n primeras provincias con más contagios ordenadas de más a
 	// menos. Si n no es pasado, se mostrarán todas las provincias.
-	// public static void provContagio(List<Test> testeos) {
+	public static void provContagio(List<Test> testeos) throws Exception {
 
-	// } fin provContagio
+		HashTablePrueba<String> ht = new HashTablePrueba<>(500);
+
+		for (Test i : testeos) {
+
+			ht.insert(i.getResidenciaProvincia(), 1);
+		}
+
+		for (Test i : testeos) {
+
+			System.out.println(ht.get(i.getResidenciaProvincia()));
+		}
+
+	} // fin provContagio
 
 }
 // fin clase main

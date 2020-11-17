@@ -1,11 +1,12 @@
+
 package structures;
 
 import java.util.Arrays;
 
-public class HashTable<TypeKey extends Comparable, TypeValue> {
-    HashEntry<TypeKey, TypeValue>[] table;
+public class HashTablePrueba<TypeKey extends Comparable> {
+    HashEntry<TypeKey>[] table;
 
-    public HashTable(int size) {
+    public HashTablePrueba(int size) {
         this.table = new HashEntry[size];
         Arrays.fill(table, null);
     }
@@ -14,7 +15,7 @@ public class HashTable<TypeKey extends Comparable, TypeValue> {
         return (int) key % table.length;
     }
 
-    public void insert(TypeKey clave, TypeValue value) throws Exception {
+    public void insert(TypeKey clave, int value) throws Exception {
         int pos = hashFunc(clave);
         if (table[pos] != null) {
             throw new Exception("Colision");
@@ -22,7 +23,7 @@ public class HashTable<TypeKey extends Comparable, TypeValue> {
         table[pos] = new HashEntry<>(clave, value);
     }
 
-    public TypeValue get(TypeKey clave) throws Exception {
+    public int get(TypeKey clave) throws Exception {
         int pos = hashFunc(clave);
         if (table[pos] == null) {
             throw new Exception("404");
@@ -43,13 +44,13 @@ public class HashTable<TypeKey extends Comparable, TypeValue> {
         table[pos] = null;
     }
 
-    private static class HashEntry<TypeKey, TypeValue> {
+    private static class HashEntry<TypeKey> {
         TypeKey key;
-        TypeValue value;
+        int value;
 
-        public HashEntry(TypeKey key, TypeValue value) { // cambiar ese value a 1 para usarlo como contador
+        public HashEntry(TypeKey key, int value) { // cambiar ese value a 1 para usarlo como contador
             this.key = key;
-            this.value = value;
+            this.value = this.value + value;
         }
 
         public TypeKey getKey() {
@@ -60,7 +61,7 @@ public class HashTable<TypeKey extends Comparable, TypeValue> {
          * public void setKey(TypeKey key) { this.key = key; }
          */
 
-        public TypeValue getValue() {
+        public int getValue() {
             return value;
         }
 
@@ -69,20 +70,4 @@ public class HashTable<TypeKey extends Comparable, TypeValue> {
          */
     }
 
-    public static void main(String[] args) {
-        HashTable<Integer, String> miTable = new HashTable<>(7);
-
-        try {
-            miTable.insert(0, "HOLA");
-            miTable.insert(1, "CHAU");
-            miTable.insert(5, "COLI");
-
-            System.out.println(miTable.get(1));
-            System.out.println(miTable.get(7));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 }
