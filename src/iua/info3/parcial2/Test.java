@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -139,6 +138,7 @@ public class Test {
     }
 
     // **************************FIN GETTERS **************************************
+
     public void setIdEventoCaso(String idEventoCaso) {
         this.idEventoCaso = Integer.parseInt(idEventoCaso);
     }
@@ -196,14 +196,15 @@ public class Test {
     }
 
     public void setFechaCuidadoIntensivo(String fechaCuidadoIntensivo) throws ParseException {
-        DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+        this.fechaCuidadoIntensivo = null;
+        try {
+            if (!fechaCuidadoIntensivo.equals("0")) {
+                this.fechaCuidadoIntensivo = fecha.parse(fechaCuidadoIntensivo);
+            }
+        } catch (ParseException e) {
 
-        if (fechaCuidadoIntensivo.equals("0")) {
-            this.fechaCuidadoIntensivo = fecha.parse("1000-01-01");
-
-        } else {
-
-            this.fechaCuidadoIntensivo = fecha.parse(fechaCuidadoIntensivo);
+            System.out.println(e);
         }
     }
 

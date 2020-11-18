@@ -1,5 +1,4 @@
 import java.util.Arrays;
-
 import structures.LinkedStack;
 
 public class HashTablePrueba {
@@ -24,15 +23,15 @@ public class HashTablePrueba {
     }
 
     public void print(Test t) {
-        System.out.print(t.getIdEventoCaso() + " - " + t.getEdad() + " - " + t.isEdadTipo() + " - " + t.getSexo()
-                + " - " + t.getResidenciaPais() + " - " + t.getResidenciaProvincia() + " - "
-                + t.getResidenciaDepartamento() + " - " + t.getCargaProvincia() + " - " + t.getFechaInicioSintomas()
-                + " - " + t.getFechaApertura() + " - " + t.getSepiApertura() + " - " + t.getFechaInternacion() + " - "
-                + t.isCuidadoIntensivo() + " - " + t.getFechaCuidadoIntensivo() + " - " + t.isFallecido() + " - "
-                + t.getFechaFallecimiento() + " - " + t.isAsistenciaRespiratoriaMecanica() + " - "
-                + t.getCargaProvinciaId() + " - " + t.isOrigenFinanciamiento() + " - " + t.getClasificacion() + " - "
-                + t.getClasificacionResumen() + " - " + t.getResidenciaProvinciaId() + " - " + t.getFechaDiagnostico()
-                + " - " + t.getResidenciaDepartamentoId() + " - " + t.getUltimaActualizacion());
+        System.out.print(t.getIdEventoCaso() + "-" + t.getEdad() + "-" + t.isEdadTipo() + "-" + t.getSexo() + "-"
+                + t.getResidenciaPais() + "-" + t.getResidenciaProvincia() + "-" + t.getResidenciaDepartamento() + "-"
+                + t.getCargaProvincia() + "-" + t.getFechaInicioSintomas() + "-" + t.getFechaApertura() + "-"
+                + t.getSepiApertura() + "-" + t.getFechaInternacion() + "-" + t.isCuidadoIntensivo() + "-"
+                + t.getFechaCuidadoIntensivo() + "-" + t.isFallecido() + "-" + t.getFechaFallecimiento() + "-"
+                + t.isAsistenciaRespiratoriaMecanica() + "-" + t.getCargaProvinciaId() + "-"
+                + t.isOrigenFinanciamiento() + "-" + t.getClasificacionResumen() + "-" + t.getResidenciaProvinciaId()
+                + "-" + t.getFechaDiagnostico() + "-" + t.getResidenciaDepartamentoId() + "-"
+                + t.getUltimaActualizacion());
 
         System.out.println();
 

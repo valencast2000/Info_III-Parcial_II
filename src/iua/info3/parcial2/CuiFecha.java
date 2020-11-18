@@ -12,12 +12,28 @@ public class CuiFecha implements Comparable<CuiFecha> {
 
     @Override
     public int compareTo(CuiFecha aux) {
-        if (fecha.compareTo(aux.fecha) < 0) {
-            return -1; // mayor
-        } else if (fecha.compareTo(aux.fecha) > 0) {
-            return 1; // menor
-        } else {
-            return 0; // iguales
-        }
+        return fecha.compareTo(aux.fecha);
     }
+
+    @Override
+    public String toString() {
+        return ("-" + test.getFechaCuidadoIntensivo() + "");
+    }
+    /*
+     * return (test.getIdEventoCaso() + " - " + test.getEdad() + " - " +
+     * test.isEdadTipo() + " - " + test.getSexo() + " - " + test.getResidenciaPais()
+     * + " - " + test.getResidenciaProvincia() + " - " +
+     * test.getResidenciaDepartamento() + " - " + test.getCargaProvincia() + " - " +
+     * test.getFechaInicioSintomas() + " - " + test.getFechaApertura() + " - " +
+     * test.getSepiApertura() + " - " + test.getFechaInternacion() + " - " +
+     * test.isCuidadoIntensivo() + " - " + test.getFechaCuidadoIntensivo() + " - " +
+     * test.isFallecido() + " - " + test.getFechaFallecimiento() + " - " +
+     * test.isAsistenciaRespiratoriaMecanica() + " - " + test.getCargaProvinciaId()
+     * + " - " + test.isOrigenFinanciamiento() + " - " + test.getClasificacion() +
+     * " - " + test.getClasificacionResumen() + " - " +
+     * test.getResidenciaProvinciaId() + " - " + test.getFechaDiagnostico() + " - "
+     * + test.getResidenciaDepartamentoId() + " - " +
+     * test.getUltimaActualizacion()); }
+     */
+
 }

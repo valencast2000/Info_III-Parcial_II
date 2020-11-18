@@ -1,26 +1,30 @@
-
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 class Main {
 
 	public static void main(String[] args) throws Exception {
+		String fileName = "";
+		// long t_inicio = 0; /*Para contar cuanto tarda*/
+		// long t_final = 0;
 
-		long t_inicio = 0;
-		long t_final = 0;
+		// t_inicio = System.nanoTime();
 
-		t_inicio = System.nanoTime();
+		List<Test> testeos = new ArrayList<>(); // Guardamos todo en una lista
 
-		List<Test> testeos = new ArrayList<>();
+		if (args[args.length - 1].contains(".csv")) {
+			fileName = args[args.length - 1];
+		}
 
-		try (BufferedReader br = new BufferedReader(
-				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-1000.csv"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("src\\iua\\info3\\parcial2\\" + fileName))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 
-				String[] values = line.split(",");
+				String[] values = line.split(","); // Dividimos todo por lineas
 
-				Test t = new Test();
+				Test t = new Test(); // Creamos t para ir almacenando los datos de cada linea
 
 				for (int i = 0; i < values.length; i++) {
 
@@ -60,55 +64,58 @@ class Main {
 				t.setUltimaActualizacion(values[24]);
 
 				testeos.add(t); // Guardamos t en la lista
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		/*
-		 * if (args[0].equals("estad")) { infoEstadistica(testeos); } if
-		 * (args[0].equals("p_casos")) { provContagio(testeos); } if
-		 * (args[0].equals("p_muertes")) { provMuertes(testeos); } if
-		 * (args[0].equals("casos_edad")) { casosEdad(testeos); } if
-		 * (args[0].equals("casos_cui")) { casosCui(testeos); }
-		 */
+		String tmp = args.length > 2 ? args[1] : "null";
 
-		casosEdad(testeos);
+		if (args[0].equals("-estad")) {
+			infoEstadistica(testeos);
 
-		t_final = System.nanoTime();
+		} else if (args[0].equals("-p_casos")) {
+			if (tmp.equals("null")) {
+				provContagio(testeos, 0);
+			} else {
+				int n = Integer.parseInt(tmp);
+				provContagio(testeos, n);
+			}
 
-		System.out.println((t_final - t_inicio) / 1000000);
+		} else if (args[0].equals("-p_muertes")) {
+			if (tmp.equals("null")) {
+				provMuertes(testeos, 0);
+			} else {
+				int n = Integer.parseInt(tmp);
+				provMuertes(testeos, n);
+			}
+
+		} else if (args[0].equals("-casos_edad")) {
+			if (tmp == "null") {
+				System.out.println("No paso edad");
+			} else {
+				int n = Integer.parseInt(tmp);
+				casosEdad(testeos, n);
+			}
+
+		} else if (args[0].equals("-casos_cui")) {
+			if (tmp.equals("null")) {
+				casosCui(testeos, "1000-01-01");
+			} else {
+				casosCui(testeos, tmp);
+			}
+		}
+
+		// t_final = System.nanoTime();
+
+		// System.out.println((t_final - t_inicio) / 1000000 + "ms"); //Para que imprima
+		// el tiempo final en ms
 
 	} // fin metodo main
 
-	// if(args[0]=="estad"){
-
-	/*
-	 * }
-	 * 
-	 * if(args[0]=="p_casos"){
-	 * 
-	 * } if(args[0]=="p_muertes"){
-	 * 
-	 * } if(args[0]=="casos_edad"){
-	 * 
-	 * } if(args[0]=="casos_cui"){
-	 * 
-	 * }
-	 */
-
 	public static void infoEstadistica(List<Test> testeos) {
-
-		/*
-		 * Información estadística: Cantidad total de muestras (un contador noma)
-		 * Cantidad total de infectados (un contador noma) Cantidad de fallecidos (un
-		 * contador noma) % de infectado por muestras ((infectados*100)/muestras) % de
-		 * fallecidos por infectados ((fallecidos*100)/infectados) Cantidad de
-		 * infectados por rango etario (rango de 10 años) (array) Cantidad de muertes
-		 * por rango etario (rango de 10 años) (array)
-		 */
-
 		int muestras = 0;
 		int infectados = 0;
 		int fallecidos = 0;
@@ -129,10 +136,10 @@ class Main {
 				infectado = true;
 			}
 
-			if (i.isEdadTipo().equals("Años") && infectado && i.getEdad() != 0) {
+			if (i.isEdadTipo().equals("Años") && infectado && i.getEdad() != 0 && i.getEdad() < 129) {
 				tmp = i.getEdad() / 10;
 				infectadosRango[tmp]++;
-			} else if (infectado && i.getEdad() != 0) {
+			} else if (infectado && i.getEdad() != 0 && i.getEdad() < 129) {
 				infectadosRango[0]++;
 			}
 
@@ -141,10 +148,11 @@ class Main {
 				fallecido = true;
 			}
 
-			if (i.isEdadTipo().equals("Años") && fallecido && i.getEdad() != 0) {
+			if (i.isEdadTipo().equals("Años") && fallecido && i.getEdad() != 0 && i.getEdad() < 129) {
 				tmp = i.getEdad() / 10;
 				fallecidosRango[tmp]++;
-			} else if (fallecido) {
+
+			} else if (fallecido && i.getEdad() != 0 && i.getEdad() < 129) {
 				fallecidosRango[0]++;
 			}
 
@@ -170,9 +178,7 @@ class Main {
 		}
 	}// end-infoestadistica
 
-	// Mostrará las n primeras provincias con más contagios ordenadas de más a
-	// menos. Si n no es pasado, se mostrarán todas las provincias.
-	public static void provContagio(List<Test> testeos) throws Exception {
+	public static void provContagio(List<Test> testeos, int limite) throws Exception {
 
 		HashTablePrueba ht = new HashTablePrueba(100);
 		int[] idProv = new int[25];
@@ -197,14 +203,25 @@ class Main {
 
 		ordenar(idProv, ht, r);
 
-		for (int i = 0; idProv[i] != 0; i++) {
-			System.out.print("1:");
-			ht.getPrint(idProv[i]);
+		if (limite > r) {
+			limite = r;
+		}
+
+		if (limite != 0) {
+			for (int i = 0; i < limite; i++) {
+				System.out.print("1:");
+				ht.getPrint(idProv[i]);
+			}
+		} else {
+			for (int i = 0; idProv[i] != 0; i++) {
+				System.out.print("1:");
+				ht.getPrint(idProv[i]);
+			}
 		}
 
 	}// fin provContagio
 
-	public static void provMuertes(List<Test> testeos) throws Exception {
+	public static void provMuertes(List<Test> testeos, int limite) throws Exception {
 		HashTablePrueba ht = new HashTablePrueba(100);
 		int[] idProv = new int[25];
 		Arrays.fill(idProv, 0);
@@ -228,18 +245,34 @@ class Main {
 		}
 
 		ordenar(idProv, ht, r);
-		for (int i = 0; idProv[i] != 0; i++) {
-			System.out.print(i + 1 + ": ");
-			ht.getPrint(idProv[i]);
+
+		if (limite > r) {
+			limite = r;
+		}
+
+		if (limite != 0) {
+
+			for (int i = 0; i < limite; i++) {
+				System.out.print("1:");
+				ht.getPrint(idProv[i]);
+			}
+
+		} else {
+
+			for (int i = 0; idProv[i] != 0; i++) {
+				System.out.print("1:");
+				ht.getPrint(idProv[i]);
+			}
+
 		}
 	}
 
-	public static void casosEdad(List<Test> testeos) throws Exception {
+	public static void casosEdad(List<Test> testeos, int n) throws Exception {
 		HashTablePrueba ht = new HashTablePrueba(100);
 		int[] idProv = new int[25];
 		Arrays.fill(idProv, 0);
 		int r = 0;
-		int edad = 45;
+		int edad = n;
 		for (Test i : testeos) {
 			if (i.getClasificacionResumen().equals("Confirmado")) {
 				if (i.getEdad() == edad) {
@@ -265,15 +298,40 @@ class Main {
 
 	}
 
+	public static void casosCui(List<Test> testeos, String fechaprueba) throws ParseException {
+		SimpleDateFormat fechaformato = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha = null;
+		if (fechaprueba != "null") {
+			fecha = fechaformato.parse(fechaprueba);
+		} else {
+			fechaprueba = "2000-01-01";
+			fecha = fechaformato.parse(fechaprueba);
+		}
+		CuiFecha cuiFechaGeneral = new CuiFecha(fecha, null);
+
+		AvlTree<CuiFecha> arbol = new AvlTree<>();
+
+		for (Test i : testeos) {
+
+			if (i.getFechaCuidadoIntensivo() != null) {
+				CuiFecha cuiFecha = new CuiFecha(i.getFechaCuidadoIntensivo(), i);
+				if (cuiFecha.compareTo(cuiFechaGeneral) > 0) {
+					arbol.insert(cuiFecha);
+				}
+			}
+		}
+		arbol.printTree();
+	}
+
 	public static void ordenar(int[] claves, HashTablePrueba ht, int r) {
 		for (int i = 0; i < r; i++) {
 			for (int j = 0; j < r; j++) {
 
 				if (ht.getSize(claves[i]) > ht.getSize(claves[j])) {
 					int tmp = (claves[i]);
-					claves[i] = claves[j];
-					claves[j] = tmp;
-
+					claves[i] = claves[j]; // *Utilizamos el metodo
+					claves[j] = tmp; // *burbuja para ordenar
+										// *las claves,
 				}
 
 			}
@@ -292,34 +350,12 @@ class Main {
 						int tmp = (claves[i]);
 						claves[i] = claves[j];
 						claves[j] = tmp;
-					} /*
-						 * else if (ht.getNombre(claves[i]).charAt(1) <
-						 * ht.getNombre(claves[j]).charAt(1)) { int tmp = (claves[i]); claves[i] =
-						 * claves[j]; claves[j] = tmp;
-						 */
-
+					}
 				}
 
 			}
 
 		}
-
-	}
-
-	public static void casosCui(List<Test> testeos) {
-
-		Date fechaprueba = new Date(2020, 07, 15);
-
-		AvlTree<CuiFecha> arbol = new AvlTree<CuiFecha>();
-
-		for (Test i : testeos) {
-			CuiFecha cuifecha = new CuiFecha(i.getFechaCuidadoIntensivo(), i);
-			if (fechaprueba.compareTo(i.getFechaCuidadoIntensivo())) {
-
-			}
-		}
-
-		// CUIDADOS INTESIVOS ES UN BOOLEAN
 
 	}
 

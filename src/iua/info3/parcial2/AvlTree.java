@@ -1,6 +1,3 @@
-package structures;
-//
-
 // CONSTRUCTION: with no initializer
 //
 // ******************PUBLIC OPERATIONS*********************
@@ -315,14 +312,10 @@ public class AvlTree<AnyType extends Comparable<? super AnyType>> {
             return;
 
         print(true, identacion + (esDerecho ? "     " : "|    "), r.right);
-
-        System.out.print(identacion);
-        if (esDerecho) {
-            System.out.print(" /");
-        } else {
-            System.out.print(" \\");
-        }
-        System.out.print("-- ");
+        /*
+         * System.out.print(identacion); if (esDerecho) { System.out.print(" /"); } else
+         * { System.out.print(" \\"); } System.out.print("-- ");
+         */
         System.out.println(r.data);
 
         print(false, identacion + (esDerecho ? "|    " : "     "), r.left);
