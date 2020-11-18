@@ -66,9 +66,14 @@ class Main {
 			e.printStackTrace();
 		}
 
-		// infoEstadistica(testeos);
-		// provContagio(testeos);
-		// provMuertes(testeos); TRABAJAR CON PARAMETROS ?
+		/*
+		 * if (args[0].equals("estad")) { infoEstadistica(testeos); } if
+		 * (args[0].equals("p_casos")) { provContagio(testeos); } if
+		 * (args[0].equals("p_muertes")) { provMuertes(testeos); } if
+		 * (args[0].equals("casos_edad")) { casosEdad(testeos); } if
+		 * (args[0].equals("casos_cui")) { casosCui(testeos); }
+		 */
+
 		casosEdad(testeos);
 
 		t_final = System.nanoTime();
@@ -298,6 +303,23 @@ class Main {
 			}
 
 		}
+
+	}
+
+	public static void casosCui(List<Test> testeos) {
+
+		Date fechaprueba = new Date(2020, 07, 15);
+
+		AvlTree<CuiFecha> arbol = new AvlTree<CuiFecha>();
+
+		for (Test i : testeos) {
+			CuiFecha cuifecha = new CuiFecha(i.getFechaCuidadoIntensivo(), i);
+			if (fechaprueba.compareTo(i.getFechaCuidadoIntensivo())) {
+
+			}
+		}
+
+		// CUIDADOS INTESIVOS ES UN BOOLEAN
 
 	}
 

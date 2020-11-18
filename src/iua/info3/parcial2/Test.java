@@ -1,3 +1,7 @@
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Test {
 
@@ -14,7 +18,7 @@ public class Test {
     private String sepiApertura;
     private String fechaInternacion;
     private boolean cuidadoIntensivo; // Verdadero -> "SI"
-    private String fechaCuidadoIntensivo;
+    private Date fechaCuidadoIntensivo;
     private String fallecido;
     private String fechaFallecimiento;
     private boolean asistenciaRespiratoriaMecanica; // Verdadero-> "SI"
@@ -82,7 +86,7 @@ public class Test {
         return cuidadoIntensivo;
     }
 
-    public String getFechaCuidadoIntensivo() {
+    public Date getFechaCuidadoIntensivo() {
         return fechaCuidadoIntensivo;
     }
 
@@ -132,10 +136,6 @@ public class Test {
 
     public String getFallecido() {
         return fallecido;
-    }
-
-    public String getEdadTipo() {
-        return edadTipo;
     }
 
     // **************************FIN GETTERS **************************************
@@ -195,8 +195,16 @@ public class Test {
         }
     }
 
-    public void setFechaCuidadoIntensivo(String fechaCuidadoIntensivo) {
-        this.fechaCuidadoIntensivo = fechaCuidadoIntensivo;
+    public void setFechaCuidadoIntensivo(String fechaCuidadoIntensivo) throws ParseException {
+        DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (fechaCuidadoIntensivo.equals("0")) {
+            this.fechaCuidadoIntensivo = fecha.parse("1000-01-01");
+
+        } else {
+
+            this.fechaCuidadoIntensivo = fecha.parse(fechaCuidadoIntensivo);
+        }
     }
 
     public void setFallecido(String fallecido) {
