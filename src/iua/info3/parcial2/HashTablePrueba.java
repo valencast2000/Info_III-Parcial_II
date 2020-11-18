@@ -46,13 +46,25 @@ public class HashTablePrueba {
             throw new Exception("404");
         }
 
-        System.out.print("Provincia: " + table[pos].pila.top().getResidenciaProvincia());
+        System.out.print("Provincia: " + table[pos].pila.top().getCargaProvincia());
         System.out.println(" Casos: " + table[pos].pila.size);
 
         for (int i = 0; i < table[pos].pila.size;) {
             Test tmp = table[pos].pila.topAndPop();
             print(tmp);
         }
+    }
+
+    public String getNombre(int clave) throws Exception {
+        int pos = hashFunc(clave);
+        if (table[pos] == null) {
+            throw new Exception("404");
+        } else if (table[pos].getKey() != clave) {
+            throw new Exception("404");
+        }
+
+        return table[pos].pila.top().getResidenciaProvincia();
+
     }
 
     public void remove(int clave) throws Exception {

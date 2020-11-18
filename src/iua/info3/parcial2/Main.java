@@ -6,11 +6,15 @@ class Main {
 
 	public static void main(String[] args) throws Exception {
 
+		long t_inicio = 0;
+		long t_final = 0;
+
+		t_inicio = System.nanoTime();
+
 		List<Test> testeos = new ArrayList<>();
-		int x = 0;
 
 		try (BufferedReader br = new BufferedReader(
-				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-1000.csv"))) {
+				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-100000.csv"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 
@@ -60,9 +64,14 @@ class Main {
 			e.printStackTrace();
 		}
 
-		// infoEstadistica(testeos);
-		// provContagio(testeos);
-		provMuertes(testeos);
+		// 1 infoEstadistica(testeos);
+		provContagio(testeos);
+		// 3provMuertes(testeos);
+		// casosEdad(testeos);
+
+		t_final = System.nanoTime();
+
+		System.out.println((t_final - t_inicio) / 1000000);
 
 	} // fin metodo main
 
@@ -166,12 +175,12 @@ class Main {
 
 		for (Test i : testeos) {
 			if (i.getClasificacionResumen().equals("Confirmado")) {
-				ht.insert(i.getResidenciaProvinciaId(), i);
+				ht.insert(i.getCargaProvinciaId(), i);
 				for (int j = 0; j < idProv.length; j++) {
-					if (idProv[j] == i.getResidenciaProvinciaId()) {
+					if (idProv[j] == i.getCargaProvinciaId()) {
 						j += idProv.length;
 					} else if (idProv[j] == 0) {
-						idProv[j] = i.getResidenciaProvinciaId();
+						idProv[j] = i.getCargaProvinciaId();
 						r++;
 						break;
 					}
@@ -196,12 +205,12 @@ class Main {
 		for (Test i : testeos) {
 			if (i.getClasificacionResumen().equals("Confirmado")) {
 				if (i.isFallecido().equals("SI")) {
-					ht.insert(i.getResidenciaProvinciaId(), i);
+					ht.insert(i.getCargaProvinciaId(), i);
 					for (int j = 0; j < idProv.length; j++) {
-						if (idProv[j] == i.getResidenciaProvinciaId()) {
+						if (idProv[j] == i.getCargaProvinciaId()) {
 							j += idProv.length;
 						} else if (idProv[j] == 0) {
-							idProv[j] = i.getResidenciaProvinciaId();
+							idProv[j] = i.getCargaProvinciaId();
 							r++;
 							break;
 						}
@@ -216,7 +225,6 @@ class Main {
 			System.out.print(i + 1 + ": ");
 			ht.getPrint(idProv[i]);
 		}
-
 	}
 
 	public static void ordenar(int[] claves, HashTablePrueba ht, int r) {
@@ -232,6 +240,62 @@ class Main {
 
 			}
 
+		}
+
+	}
+
+	public static void ordenarNombre(int[] claves, HashTablePrueba ht, int r) throws Exception {
+
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < r; j++) {
+
+				if (!ht.getNombre(claves[i]).equals(ht.getNombre(claves[j]))) {
+					if (ht.getNombre(claves[i]).charAt(0) < ht.getNombre(claves[j]).charAt(0)) {
+						int tmp = (claves[i]);
+						claves[i] = claves[j];
+						claves[j] = tmp;
+					} else if (ht.getNombre(claves[i]).charAt(1) < ht.getNombre(claves[j]).charAt(1)) {
+						int tmp = (claves[i]);
+						claves[i] = claves[j];
+						claves[j] = tmp;
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	public static void casosEdad(List<Test> testeos) throws Exception {
+		HashTablePrueba ht = new HashTablePrueba(100);
+		int[] idProv = new int[25];
+		Arrays.fill(idProv, 0);
+		int r = 0;
+		int edad = 22;
+		for (Test i : testeos) {
+			if (i.getClasificacionResumen().equals("Confirmado")) {
+				if (i.getEdad() == edad) {
+					ht.insert(i.getResidenciaProvinciaId(), i);
+					for (int j = 0; j < idProv.length; j++) {
+						if (idProv[j] == i.getResidenciaProvinciaId()) {
+							j += idProv.length;
+						} else if (idProv[j] == 0) {
+							idProv[j] = i.getResidenciaProvinciaId();
+							r++;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		ordenarNombre(idProv, ht, r);
+		for (int i = 0; idProv[i] != 0; i++) {
+			System.out.print(i + 1 + ": ");
+			ht.getPrint(idProv[i]);
 		}
 
 	}
