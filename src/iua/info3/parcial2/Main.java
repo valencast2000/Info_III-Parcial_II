@@ -14,7 +14,7 @@ class Main {
 		List<Test> testeos = new ArrayList<>();
 
 		try (BufferedReader br = new BufferedReader(
-				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-100000.csv"))) {
+				new FileReader("src\\iua\\info3\\parcial2\\Covid19Casos-1000.csv"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 
@@ -31,6 +31,7 @@ class Main {
 					}
 
 				}
+
 				t.setIdEventoCaso(values[0]);
 				t.setSexo(values[1]);
 				t.setEdad(values[2]);
@@ -39,7 +40,8 @@ class Main {
 				t.setResidenciaProvincia(values[5]);
 				t.setResidenciaDepartamento(values[6]);
 				t.setCargaProvincia(values[7]);
-				t.setFechaInicioSintomas(values[8]);
+				t.setFechaInicioSintomas(values[8]); // SETEAMOS TODOS LOS VALORES, PARA GUARDARLOS EN t q es del tipo
+														// Test
 				t.setFechaApertura(values[9]);
 				t.setSepiApertura(values[10]);
 				t.setFechaInternacion(values[11]);
@@ -57,17 +59,17 @@ class Main {
 				t.setResidenciaDepartamentoId(values[23]);
 				t.setUltimaActualizacion(values[24]);
 
-				testeos.add(t);
+				testeos.add(t); // Guardamos t en la lista
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// 1 infoEstadistica(testeos);
-		provContagio(testeos);
-		// 3provMuertes(testeos);
-		// casosEdad(testeos);
+		// infoEstadistica(testeos);
+		// provContagio(testeos);
+		// provMuertes(testeos); TRABAJAR CON PARAMETROS ?
+		casosEdad(testeos);
 
 		t_final = System.nanoTime();
 
@@ -106,8 +108,8 @@ class Main {
 		int infectados = 0;
 		int fallecidos = 0;
 
-		int[] infectadosRango = new int[11];
-		int[] fallecidosRango = new int[11];
+		int[] infectadosRango = new int[13];
+		int[] fallecidosRango = new int[13];
 
 		for (Test i : testeos) { // 1
 
@@ -227,6 +229,37 @@ class Main {
 		}
 	}
 
+	public static void casosEdad(List<Test> testeos) throws Exception {
+		HashTablePrueba ht = new HashTablePrueba(100);
+		int[] idProv = new int[25];
+		Arrays.fill(idProv, 0);
+		int r = 0;
+		int edad = 45;
+		for (Test i : testeos) {
+			if (i.getClasificacionResumen().equals("Confirmado")) {
+				if (i.getEdad() == edad) {
+					ht.insert(i.getCargaProvinciaId(), i);
+					for (int j = 0; j < idProv.length; j++) {
+						if (idProv[j] == i.getCargaProvinciaId()) {
+							j += idProv.length;
+						} else if (idProv[j] == 0) {
+							idProv[j] = i.getCargaProvinciaId();
+							r++;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		ordenarNombre(idProv, ht, r);
+		for (int i = 0; idProv[i] != 0; i++) {
+			System.out.print(i + 1 + ": ");
+			ht.getPrint(idProv[i]);
+		}
+
+	}
+
 	public static void ordenar(int[] claves, HashTablePrueba ht, int r) {
 		for (int i = 0; i < r; i++) {
 			for (int j = 0; j < r; j++) {
@@ -254,48 +287,16 @@ class Main {
 						int tmp = (claves[i]);
 						claves[i] = claves[j];
 						claves[j] = tmp;
-					} else if (ht.getNombre(claves[i]).charAt(1) < ht.getNombre(claves[j]).charAt(1)) {
-						int tmp = (claves[i]);
-						claves[i] = claves[j];
-						claves[j] = tmp;
-
-					}
+					} /*
+						 * else if (ht.getNombre(claves[i]).charAt(1) <
+						 * ht.getNombre(claves[j]).charAt(1)) { int tmp = (claves[i]); claves[i] =
+						 * claves[j]; claves[j] = tmp;
+						 */
 
 				}
 
 			}
 
-		}
-
-	}
-
-	public static void casosEdad(List<Test> testeos) throws Exception {
-		HashTablePrueba ht = new HashTablePrueba(100);
-		int[] idProv = new int[25];
-		Arrays.fill(idProv, 0);
-		int r = 0;
-		int edad = 22;
-		for (Test i : testeos) {
-			if (i.getClasificacionResumen().equals("Confirmado")) {
-				if (i.getEdad() == edad) {
-					ht.insert(i.getResidenciaProvinciaId(), i);
-					for (int j = 0; j < idProv.length; j++) {
-						if (idProv[j] == i.getResidenciaProvinciaId()) {
-							j += idProv.length;
-						} else if (idProv[j] == 0) {
-							idProv[j] = i.getResidenciaProvinciaId();
-							r++;
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		ordenarNombre(idProv, ht, r);
-		for (int i = 0; idProv[i] != 0; i++) {
-			System.out.print(i + 1 + ": ");
-			ht.getPrint(idProv[i]);
 		}
 
 	}

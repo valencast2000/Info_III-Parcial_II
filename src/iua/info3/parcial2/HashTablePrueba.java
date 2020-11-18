@@ -63,7 +63,7 @@ public class HashTablePrueba {
             throw new Exception("404");
         }
 
-        return table[pos].pila.top().getResidenciaProvincia();
+        return table[pos].pila.top().getCargaProvincia();
 
     }
 
