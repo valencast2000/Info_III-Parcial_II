@@ -79,13 +79,6 @@ public class HashTablePrueba {
             return key;
         }
 
-        /*
-         * public void setKey(TypeKey key) { this.key = key; }
-         */
-
-        /*
-         * public void setValue(TypeValue value) { this.value = value; }
-         */
     }
 
 }
