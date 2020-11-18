@@ -31,6 +31,13 @@ public class HashTablePrueba {
 
     }
 
+    public int getSize(int clave) {
+        if (table[hashFunc(clave)].pila.size == 0 || clave == 99) {
+            return 0;
+        }
+        return table[clave].pila.size;
+    }
+
     public void getPrint(int clave) throws Exception {
         int pos = hashFunc(clave);
         if (table[pos] == null) {
@@ -39,8 +46,8 @@ public class HashTablePrueba {
             throw new Exception("404");
         }
 
-            System.out.print("Provincia: " + table[pos].pila.top().getResidenciaProvincia());
-            System.out.println(" Casos: " + table[pos].pila.size);
+        System.out.print("Provincia: " + table[pos].pila.top().getResidenciaProvincia());
+        System.out.println(" Casos: " + table[pos].pila.size);
 
         for (int i = 0; i < table[pos].pila.size;) {
             Test tmp = table[pos].pila.topAndPop();

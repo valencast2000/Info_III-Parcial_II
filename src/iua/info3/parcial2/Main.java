@@ -2,9 +2,6 @@
 import java.io.*;
 import java.util.*;
 
-import structures.ArrayStack;
-import structures.LinkedStack;
-
 class Main {
 
 	public static void main(String[] args) throws Exception {
@@ -160,27 +157,51 @@ class Main {
 
 		HashTablePrueba ht = new HashTablePrueba(100);
 		int[] idProv = new int[25];
-		Arrays.fill(idProv, -1);
+		Arrays.fill(idProv, 0);
+
+		int r = 0;
 
 		for (Test i : testeos) {
-			if(i.getClasificacionResumen().equals("Confirmado")) {
+			if (i.getClasificacionResumen().equals("Confirmado")) {
 				ht.insert(i.getResidenciaProvinciaId(), i);
 				for (int j = 0; j < idProv.length; j++) {
 					if (idProv[j] == i.getResidenciaProvinciaId()) {
 						j += idProv.length;
-					} else if (idProv[j] == -1) {
+					} else if (idProv[j] == 0) {
 						idProv[j] = i.getResidenciaProvinciaId();
+						r++;
 						break;
 					}
 				}
 			}
 		}
 
-		for (int i = 0; idProv[i]!=-1; i++) {
+		ordenar(idProv, ht);
+
+		System.out.println(r);
+
+		for (int i = 0; idProv[i] != -1; i++) {
 			System.out.print("1:");
 			ht.getPrint(idProv[i]);
 		}
-	
+
 	}// fin provContagio
+
+	public static void ordenar(int[] claves, HashTablePrueba ht) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 1; j < 9; j++) {
+
+				if (ht.getSize(claves[i]) < ht.getSize(claves[j])) {
+					int tmp = ht.getSize(claves[i]);
+					claves[i] = claves[j];
+					claves[j] = tmp;
+
+				}
+
+			}
+
+		}
+
+	}
 
 }// fin clase main
