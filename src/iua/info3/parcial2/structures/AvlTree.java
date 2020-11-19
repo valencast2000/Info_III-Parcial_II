@@ -1,5 +1,6 @@
-// CONSTRUCTION: with no initializer
-//
+package structures;
+//CONSTRUCTION: with no initializer
+
 // ******************PUBLIC OPERATIONS*********************
 // void insert( x )       --> Insert x
 // void remove( x )       --> Remove x (unimplemented)

@@ -1,4 +1,5 @@
 import java.util.Arrays;
+
 import structures.LinkedStack;
 
 public class HashTablePrueba {

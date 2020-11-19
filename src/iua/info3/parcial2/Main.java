@@ -3,6 +3,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import structures.AvlTree;
+
 class Main {
 
 	public static void main(String[] args) throws Exception {
@@ -326,18 +328,14 @@ class Main {
 	public static void ordenar(int[] claves, HashTablePrueba ht, int r) {
 		for (int i = 0; i < r; i++) {
 			for (int j = 0; j < r; j++) {
-
 				if (ht.getSize(claves[i]) > ht.getSize(claves[j])) {
 					int tmp = (claves[i]);
 					claves[i] = claves[j]; // *Utilizamos el metodo
 					claves[j] = tmp; // *burbuja para ordenar
 										// *las claves,
 				}
-
 			}
-
 		}
-
 	}
 
 	public static void ordenarNombre(int[] claves, HashTablePrueba ht, int r) throws Exception {
@@ -352,7 +350,6 @@ class Main {
 						claves[j] = tmp;
 					}
 				}
-
 			}
 
 		}

@@ -1,4 +1,4 @@
-import structures.LinkedNodePrueba;
+package structures;
 
 public class LinkedStackPrueba<AnyType> {
     private LinkedNodePrueba<AnyType> cima;
