@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5cafdb3-7a84-4c53-b4d8-726e45e12762" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="parcial2" />
+      <option name="PROGRAM_PARAMETERS" value="-estad G:\\archivo\\Covid19Casos-1000.csv" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5cafdb3-7a84-4c53-b4d8-726e45e12762" name="Default Changelist" comment="" />
+      <created>1605750879421</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605750879421</updated>
+      <workItem from="1605750880493" duration="1335000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="385" key="GridCell.Tab.0.bottom" timestamp="1605752216717">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="385" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1680.25.1680.1050@0.0.1920.1080" timestamp="1605752216717" />
+    <state width="1877" height="385" key="GridCell.Tab.0.center" timestamp="1605752216717">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="385" key="GridCell.Tab.0.center/0.0.1920.1080/-1680.25.1680.1050@0.0.1920.1080" timestamp="1605752216717" />
+    <state width="1877" height="385" key="GridCell.Tab.0.left" timestamp="1605752216717">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="385" key="GridCell.Tab.0.left/0.0.1920.1080/-1680.25.1680.1050@0.0.1920.1080" timestamp="1605752216717" />
+    <state width="1877" height="385" key="GridCell.Tab.0.right" timestamp="1605752216717">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="385" key="GridCell.Tab.0.right/0.0.1920.1080/-1680.25.1680.1050@0.0.1920.1080" timestamp="1605752216717" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NumberFormatException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
