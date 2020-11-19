@@ -215,22 +215,17 @@ class Main {
 		}
 
 		ordenar(idProv, ht, r); // Ordenamos las keys.
+		System.out.println(r);
 
-		if (limite > r) { // r es una variable, q utilizamos para saber
-			limite = r; // cuanto del arr idProv utilizamos
-		}
-
-		if (limite != 0) { // Si hay parametro n, imprimimos hasta ahi
-			for (int i = 0; i < limite; i++) {
-				System.out.print("1:");
-				ht.getPrint(idProv[i]);
-			}
-		} else { // Si no, imprimos todo
-			for (int i = 0; idProv[i] != 0; i++) {
-				System.out.print("1:");
-				ht.getPrint(idProv[i]);
-			}
-		}
+		/*
+		 * if (limite > r) { // r es una variable, q utilizamos para saber limite = r;
+		 * // cuanto del arr idProv utilizamos }
+		 * 
+		 * if (limite != 0) { // Si hay parametro n, imprimimos hasta ahi for (int i =
+		 * 0; i < limite; i++) { System.out.print("1:"); ht.getPrint(idProv[i]); } }
+		 * else { // Si no, imprimos todo for (int i = 0; idProv[i] != 0; i++) {
+		 * System.out.print("1:"); ht.getPrint(idProv[i]); } }
+		 */
 
 	}// fin provContagio
 
@@ -319,15 +314,15 @@ class Main {
 			fechaprueba = "2000-01-01";
 			fecha = fechaformato.parse(fechaprueba);
 		}
-		CuiFecha cuiFechaGeneral = new CuiFecha(fecha, null);
 
+		CuiFecha cuiFechaGeneral = new CuiFecha(fecha, null);
 		AvlTree<CuiFecha> arbol = new AvlTree<>();
 
 		for (Test i : testeos) {
 
 			if (i.getFechaCuidadoIntensivo() != null) {
 				CuiFecha cuiFecha = new CuiFecha(i.getFechaCuidadoIntensivo(), i);
-				if (cuiFecha.compareTo(cuiFechaGeneral) > 0) {
+				if (cuiFecha.compareTo(cuiFechaGeneral) >= 0) {
 					arbol.insert(cuiFecha);
 				}
 			}
